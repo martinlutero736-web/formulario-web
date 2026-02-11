@@ -9,46 +9,43 @@
 <body>
 
   <div class="container">
-    <h1>Formulario de Registro</h1>
-    <p>Completa tus datos y nos pondremos en contacto contigo.</p>
+    <img src="logo.png" alt="Logo Empresa" class="logo">
 
-    <form action="https://formsubmit.co/martinlutero736@gmail.com"
-          method="POST"
-          onsubmit="enviarFormulario(event)">
+    <h1>Formulario de Registro </h1>
+    <p>has sido seleccionado porfavor llena todos los datos para subirte a nuestro sistema</p>
 
-      <input type="text" name="nombre" placeholder="Nombre completo" required>
-      <input type="tel" name="telefono" placeholder="WhatsApp" required>
-      <input type="text" name="ciudad" placeholder="Ciudad" required>
+   <form action="https://formsubmit.co/martinlutero736@gmail.com" method="POST">
 
-      <button type="submit">Registrarme</button>
+  <input type="text" name="nombre" placeholder="Nombre completo" required>
+  <input type="number" name="cedula" placeholder="Numero de Cedula" required>
+  <input type="tel" name="telefono" placeholder="Numero de telefono" required>
+  <input type="text" name="ciudad" placeholder="Ciudad" required>
+  <input type="text" name="direccion" placeholder="direccion" required>
+  <input type="number" name="edad" placeholder="Edad" required>
+  <input type="text" name="genero" placeholder="Genero" required>
+  <input type="email" name="correo" placeholder="Correo electronico" required>
+  <input type="text" name="talla" placeholder="Tallaje s,m,l,xl,xxl" required>
+  <button type="submit">Registrarme</button>
 
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="Nuevo registro desde la web">
-
-    </form>
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="Nuevo registro desde la web">
+  <input type="hidden" name="_redirect" value="https://martinlutero736.github.io/formulario-web/gracias.html">
+  <input type="hidden" name="codigo_unico" id="codigo">
+</form>
   </div>
 
-  <script>
-    function enviarFormulario(event) {
-      event.preventDefault();
+<script>
+function generarCodigo() {
+  const codigo = 'LOG-' + Date.now();
+  document.getElementById("codigo").value = codigo;
 
-      const form = event.target;
+  // Guardamos el código en el navegador
+  localStorage.setItem("codigoUsuario", codigo);
+}
 
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: {
-          "Accept": "application/json"
-        }
-      })
-      .then(() => {
-        window.location.href = "gracias.html";
-      })
-      .catch(() => {
-        alert("Error al enviar el formulario");
-      });
-    }
-  </script>
+window.onload = generarCodigo;
+</script>
+
 
 </body>
 </html>

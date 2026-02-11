@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Gracias</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       display: flex;
@@ -11,22 +12,51 @@
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background: #f8eaf2;
     }
+
     .box {
       background: #fff;
-      padding: 30px;
+      padding: 40px;
       border-radius: 10px;
       text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #A23B72;
+    }
+
+    #codigoMostrado {
+      font-size: 22px;
+      font-weight: bold;
+      color: #A23B72;
+      margin-top: 10px;
     }
   </style>
 </head>
+
 <body>
 
   <div class="box">
     <h1>¡Gracias!</h1>
     <p>Hemos recibido tu información correctamente.</p>
+    <h2>Tu código de registro es:</h2>
+    <p id="codigoMostrado"></p>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const codigo = localStorage.getItem("codigoUsuario");
+
+      if (codigo) {
+        document.getElementById("codigoMostrado").textContent = codigo;
+      } else {
+        document.getElementById("codigoMostrado").textContent = "No se encontró el código.";
+      }
+    });
+  </script>
 
 </body>
 </html>
+
