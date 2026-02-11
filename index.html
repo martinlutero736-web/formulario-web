@@ -14,8 +14,18 @@
     <h1>Formulario de Registro </h1>
     <p>has sido seleccionado porfavor llena todos los datos para subirte a nuestro sistema</p>
 
-   <form action="https://formsubmit.co/martinlutero736@gmail.com" method="POST">
+<form action="https://api.web3forms.com/submit" method="POST">
 
+  <!-- Access Key -->
+  <input type="hidden" name="access_key" value="45e578ec-29ba-441d-90ef-f990f25c0c4a">
+
+  <!-- Redirección -->
+  <input type="hidden" name="redirect" value="https://martinlutero736-web.github.io/formulario-web/gracias.html">
+
+  <!-- Asunto -->
+  <input type="hidden" name="subject" value="Nuevo registro desde la web">
+
+  <!-- Tus campos -->
   <input type="text" name="nombre" placeholder="Nombre completo" required>
   <input type="number" name="cedula" placeholder="Numero de Cedula" required>
   <input type="tel" name="telefono" placeholder="Numero de telefono" required>
@@ -25,13 +35,13 @@
   <input type="text" name="genero" placeholder="Genero" required>
   <input type="email" name="correo" placeholder="Correo electronico" required>
   <input type="text" name="talla" placeholder="Tallaje s,m,l,xl,xxl" required>
+
+  <input type="hidden" name="codigo_unico" id="codigo">
+
   <button type="submit">Registrarme</button>
 
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="Nuevo registro desde la web">
-  <input type="hidden" name="_next" value="https://martinlutero736-web.github.io/formulario-web/gracias.html">
-  <input type="hidden" name="codigo_unico" id="codigo">
 </form>
+
   </div>
 
 <script>
