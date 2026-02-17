@@ -11,52 +11,120 @@
   <div class="container">
     <img src="logo.png" alt="Logo Empresa" class="logo">
 
-    <h1>Formulario de Registro </h1>
-    <p>has sido seleccionado porfavor llena todos los datos para subirte a nuestro sistema</p>
+    <h1>Formulario de Registro</h1>
+    <p>Has sido seleccionado, por favor llena todos los datos para subirte a nuestro sistema.</p>
 
-<form action="https://api.web3forms.com/submit" method="POST">
+    <form id="miFormulario">
 
-  <!-- Access Key -->
-  <input type="hidden" name="access_key" value="45e578ec-29ba-441d-90ef-f990f25c0c4a">
+      <input type="text" id="nombre" placeholder="Nombre completo" required>
+      <input type="number" id="cedula" placeholder="Numero de Cedula" required>
+      <input type="tel" id="telefono" placeholder="Numero de telefono" required>
+      <input type="text" id="ciudad" placeholder="Ciudad" required>
+      <input type="text" id="direccion" placeholder="Direccion" required>
+      <input type="number" id="edad" placeholder="Edad" required>
+      <select id="genero" required>
+  <option value="">Seleccione su género</option>
+  <option value="Masculino">Masculino</option>
+  <option value="Femenino">Femenino</option>
+  <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+</select>
+      <input type="email" id="correo" placeholder="Correo electronico" required>
+      <select id="talla" required>
+  <option value="">Seleccione su talla</option>
+  <option value="XS">XS</option>
+  <option value="S">S</option>
+  <option value="M">M</option>
+  <option value="L">L</option>
+  <option value="XL">XL</option>
+  <option value="XXL">XXL</option>
+</select>
 
-  <!-- Redirección -->
-  <input type="hidden" name="redirect" value="https://martinlutero736-web.github.io/formulario-web/gracias.html">
+      <input type="hidden" id="codigo_unico">
+<label>¿Dónde encontraste la oferta?</label>
 
-  <!-- Asunto -->
-  <input type="hidden" name="subject" value="Nuevo registro desde la web">
+<select id="fuente" required>
+  <option value="">Seleccione una opción</option>
+  <option value="Redes sociales">Redes sociales</option>
+  <option value="Periódico">Periódico</option>
+  <option value="Página de empleo">Página de empleo</option>
+  <option value="Amigo o conocido">Amigo o conocido</option>
+  <option value="Otra">Otra</option>
+</select>
 
-  <!-- Tus campos -->
-  <input type="text" name="nombre" placeholder="Nombre completo" required>
-  <input type="number" name="cedula" placeholder="Numero de Cedula" required>
-  <input type="tel" name="telefono" placeholder="Numero de telefono" required>
-  <input type="text" name="ciudad" placeholder="Ciudad" required>
-  <input type="text" name="direccion" placeholder="direccion" required>
-  <input type="number" name="edad" placeholder="Edad" required>
-  <input type="text" name="genero" placeholder="Genero" required>
-  <input type="email" name="correo" placeholder="Correo electronico" required>
-  <input type="text" name="talla" placeholder="Tallaje s,m,l,xl,xxl" required>
+<input type="text" id="otra_fuente" placeholder="Si seleccionaste otra, ¿cuál?" style="display:none;">
+      <button type="submit">Registrarme</button>
 
-  <input type="hidden" name="codigo_unico" id="codigo">
-
-  <button type="submit">Registrarme</button>
-
-</form>
-
+    </form>
   </div>
-
+<script>
+document.getElementById("fuente").addEventListener("change", function() {
+  const otraInput = document.getElementById("otra_fuente");
+  
+  if (this.value === "Otra") {
+    otraInput.style.display = "block";
+    otraInput.required = true;
+  } else {
+    otraInput.style.display = "none";
+    otraInput.required = false;
+    otraInput.value = "";
+  }
+});
+</script>
 <script>
 function generarCodigo() {
   const codigo = 'LOG-' + Date.now();
-  document.getElementById("codigo").value = codigo;
-
-  // Guardamos el código en el navegador
+  document.getElementById("codigo_unico").value = codigo;
   localStorage.setItem("codigoUsuario", codigo);
 }
-
 window.onload = generarCodigo;
 </script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCHM3cvWhsWk1U7LZ7O8MZMoP1N4ce7ZX4",
+    authDomain: "logistica-eventos-6d7c2.firebaseapp.com",
+    projectId: "logistica-eventos-6d7c2",
+    storageBucket: "logistica-eventos-6d7c2.firebasestorage.app",
+    messagingSenderId: "716474209516",
+    appId: "1:716474209516:web:af435dff099877b47fc1c9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const formulario = document.getElementById("miFormulario");
+
+  formulario.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "registros"), {
+        nombre: document.getElementById("nombre").value,
+        cedula: document.getElementById("cedula").value,
+        telefono: document.getElementById("telefono").value,
+        ciudad: document.getElementById("ciudad").value,
+        direccion: document.getElementById("direccion").value,
+        edad: document.getElementById("edad").value,
+        genero: document.getElementById("genero").value,
+        correo: document.getElementById("correo").value,
+        talla: document.getElementById("talla").value,
+        codigo_unico: document.getElementById("codigo_unico").value,
+        fecha: new Date(),
+        fuente: document.getElementById("fuente").value,
+otra_fuente: document.getElementById("otra_fuente").value,
+      });
+
+      window.location.href = "gracias.html";
+
+    } catch (error) {
+      alert("Error al enviar el formulario");
+      console.error(error);
+    }
+  });
+</script>
 
 </body>
 </html>
-

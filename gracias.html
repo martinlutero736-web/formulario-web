@@ -1,91 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Gracias</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro Confirmado</title>
 
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #f8eaf2;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-    .box {
-      background: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
+body{
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
 
-    h1 {
-      color: #A23B72;
-    }
+.card{
+  background:#ffffff;
+  max-width:700px;
+  width:100%;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  animation:fadeIn 0.6s ease-in-out;
+}
 
-    #codigoMostrado {
-      font-size: 22px;
-      font-weight: bold;
-      color: #A23B72;
-      margin-top: 10px;
-    }
-  </style>
+h1{
+  text-align:center;
+  color:#111;
+  margin-bottom:10px;
+}
+
+h3{
+  text-align:center;
+  color:#555;
+  margin-bottom:25px;
+}
+
+.content{
+  color:#333;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.section-title{
+  margin-top:20px;
+  font-weight:bold;
+}
+
+.codigo-box{
+  background:#000;
+  color:#fff;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:25px;
+}
+
+#codigoMostrado{
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:2px;
+  margin-top:8px;
+}
+
+.highlight{
+  color:#A23B72;
+  font-weight:bold;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(15px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>¡Gracias!</h1>
-    <h3>Hemos recibido tu información correctamente.</h3>
+<div class="card">
+
+  <h1>¡Gracias!</h1>
+  <h3>Hemos recibido tu información correctamente.</h3>
+
+  <div class="content">
+
+    <p class="highlight">✅ Formulario recibido con éxito</p>
+    <p>Nos alegra que seas parte de nuestro equipo de trabajo 🙌</p>
+
     <p>
-✅ Formulario recibido con éxito
-
-Hemos recibido tu información correctamente.
-Nos alegra que seas parte de nuestro equipo de trabajo 🙌
-
-Por favor, envía la captura de tu registro y guarda tu código, ya que es único e intransferible.
-
-Ten en cuenta la siguiente información importante:
-
-🔒 Cupo:
-El cupo NO queda reservado sin el pago de la carnetización.
-Sin este pago no se garantiza el ingreso.
-
-⏰ Puntualidad:
-Debes presentarte 30 minutos antes de la hora indicada.
-En un mensaje posterior se te enviará el nombre del coordinador y por quién debes preguntar.
-
-🚫 Prohibiciones:
-• Prohibido tomar fotos o videos a los artistas.
-• Uso restringido de celulares y otros dispositivos electrónicos durante la operación.
-
-⚠️ Compromiso:
-El incumplimiento de horarios o normas puede ocasionar la pérdida inmediata del cupo.
-
-🙌 Gracias por tu compromiso y disposición.
-Toda la información adicional será enviada por este medio.
+    Por favor, envía la captura de tu registro y guarda tu código,
+    ya que es <strong>único e intransferible.</strong>
     </p>
 
-    <h2>Tu código de registro es:</h2>
-    <p id="codigoMostrado"></p>
+    <div class="section-title">🔒 Cupo:</div>
+    <p>
+    El cupo NO queda reservado sin el pago de la carnetización.
+    Sin este pago no se garantiza el ingreso.
+    </p>
+
+    <div class="section-title">⏰ Puntualidad:</div>
+    <p>
+    Debes presentarte 30 minutos antes de la hora indicada.
+    En un mensaje posterior se te enviará el nombre del coordinador y por quién debes preguntar.
+    </p>
+
+    <div class="section-title">🚫 Prohibiciones:</div>
+    <p>
+    • Prohibido tomar fotos o videos a los artistas.<br>
+    • Uso restringido de celulares y otros dispositivos electrónicos durante la operación.
+    </p>
+
+    <div class="section-title">⚠️ Compromiso:</div>
+    <p>
+    El incumplimiento de horarios o normas puede ocasionar la pérdida inmediata del cupo.
+    </p>
+
+    <p style="margin-top:15px;">
+    🙌 Gracias por tu compromiso y disposición.
+    Toda la información adicional será enviada por este medio.
+    </p>
+
+    <div class="codigo-box">
+      Tu código de registro es:
+      <div id="codigoMostrado"></div>
+    </div>
+
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const codigo = localStorage.getItem("codigoUsuario");
+</div>
 
-      if (codigo) {
-        document.getElementById("codigoMostrado").textContent = codigo;
-      } else {
-        document.getElementById("codigoMostrado").textContent = "No se encontró el código.";
-      }
-    });
-  </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const codigo = localStorage.getItem("codigoUsuario");
+
+  if (codigo) {
+    document.getElementById("codigoMostrado").textContent = codigo;
+  } else {
+    document.getElementById("codigoMostrado").textContent = "No se encontró el código.";
+  }
+});
+</script>
 
 </body>
 </html>
-
