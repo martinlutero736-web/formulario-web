@@ -60,19 +60,21 @@ p {
 .icon-input {
   position: relative;
   margin-bottom: 18px;
+  display: flex;
+  align-items: center; /* 👈 centra vertical real */
 }
 
 .icon-input i {
   position: absolute;
-  top: 50%;
-  left: 14px;
-  transform: translateY(-50%);
-  color: #2c5364;
+  left: 15px;
   font-size: 14px;
+  color: #2c5364;
+  pointer-events: none;
 }
 
 .icon-input input {
-  padding-left: 40px;
+  padding: 14px 14px 14px 42px; /* 👈 espacio fijo para icono */
+  width: 100%;
 }
 
 /* Inputs y selects */
@@ -155,4 +157,14 @@ button:disabled {
   height: auto;
   display: block;
   margin: 0 auto 15px;
+}
+@media (max-width: 480px) {
+  .icon-input i {
+    left: 14px;
+    font-size: 13px;
+  }
+
+  .icon-input input {
+    padding-left: 40px;
+  }
 }
