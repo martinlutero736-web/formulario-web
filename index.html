@@ -5,6 +5,7 @@
   <title>Formulario de Registro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -13,32 +14,31 @@
 
     <h1>Formulario de Registro</h1>
     <p>Has sido seleccionado, por favor llena todos los datos para subirte a nuestro sistema.</p>
-
+<div class="progress-bar">
+  <div class="progress"></div>
+</div>
 <form id="miFormulario">
 
-  <div class="form-group">
-    <input type="text" id="nombre" placeholder="Nombre completo" required>
-  </div>
 
-  <div class="form-group">
-    <input type="number" id="cedula" placeholder="Numero de Cedula" required>
-  </div>
+<div class="form-group icon-input">
+  <i class="fa fa-user"></i>
+  <input type="text" id="nombre" placeholder="Nombre completo" required>
+</div>
 
-  <div class="form-group">
-    <input type="tel" id="telefono" placeholder="Numero de telefono" required>
-  </div>
+<div class="form-group icon-input">
+  <i class="fa fa-id-card"></i>
+  <input type="number" id="cedula" placeholder="Numero de Cedula" required>
+</div>
 
-  <div class="form-group">
-    <input type="text" id="ciudad" placeholder="Ciudad" required>
-  </div>
+<div class="form-group icon-input">
+  <i class="fa fa-phone"></i>
+  <input type="tel" id="telefono" placeholder="Numero de telefono" required>
+</div>
 
-  <div class="form-group">
-    <input type="text" id="direccion" placeholder="Direccion" required>
-  </div>
-
-  <div class="form-group">
-    <input type="number" id="edad" placeholder="Edad" required>
-  </div>
+<div class="form-group icon-input">
+  <i class="fa fa-envelope"></i>
+  <input type="email" id="correo" placeholder="Correo electronico" required>
+</div>
 
   <div class="form-group">
     <label for="genero">Seleccione su género</label>
@@ -50,9 +50,7 @@
     </select>
   </div>
 
-  <div class="form-group">
-    <input type="email" id="correo" placeholder="Correo electronico" required>
-  </div>
+
 
   <div class="form-group">
     <label for="talla">Seleccione su talla</label>
@@ -84,7 +82,7 @@
   </div>
 
   <input type="hidden" id="codigo_unico">
-
+<div class="loader" id="loader"></div>
   <button type="submit">Registrarme</button>
 
 </form>
@@ -133,7 +131,8 @@ window.onload = generarCodigo;
 
   formulario.addEventListener("submit", async (e) => {
     e.preventDefault();
-
+document.querySelector(".progress").style.width = "100%";
+document.getElementById("loader").style.display = "block";
     try {
       await addDoc(collection(db, "registros"), {
         nombre: document.getElementById("nombre").value,
