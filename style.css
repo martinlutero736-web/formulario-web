@@ -133,3 +133,19 @@ button:hover {
     font-size: 15px;
   }
 }
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+select {
+  appearance: none;
+}

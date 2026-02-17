@@ -14,57 +14,91 @@
     <h1>Formulario de Registro</h1>
     <p>Has sido seleccionado, por favor llena todos los datos para subirte a nuestro sistema.</p>
 
-    <form id="miFormulario">
+<form id="miFormulario">
 
-      <input type="text" id="nombre" placeholder="Nombre completo" required>
-      <input type="number" id="cedula" placeholder="Numero de Cedula" required>
-      <input type="tel" id="telefono" placeholder="Numero de telefono" required>
-      <input type="text" id="ciudad" placeholder="Ciudad" required>
-      <input type="text" id="direccion" placeholder="Direccion" required>
-      <input type="number" id="edad" placeholder="Edad" required>
-      <select id="genero" required>
-  <option value="">Seleccione su género</option>
-  <option value="Masculino">Masculino</option>
-  <option value="Femenino">Femenino</option>
-  <option value="Prefiero no decirlo">Prefiero no decirlo</option>
-</select>
-      <input type="email" id="correo" placeholder="Correo electronico" required>
-      <select id="talla" required>
-  <option value="">Seleccione su talla</option>
-  <option value="XS">XS</option>
-  <option value="S">S</option>
-  <option value="M">M</option>
-  <option value="L">L</option>
-  <option value="XL">XL</option>
-  <option value="XXL">XXL</option>
-</select>
+  <div class="form-group">
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+  </div>
 
-      <input type="hidden" id="codigo_unico">
-<label>¿Dónde encontraste la oferta?</label>
+  <div class="form-group">
+    <input type="number" id="cedula" placeholder="Numero de Cedula" required>
+  </div>
 
-<select id="fuente" required>
-  <option value="">Seleccione una opción</option>
-  <option value="Redes sociales">Redes sociales</option>
-  <option value="Periódico">Periódico</option>
-  <option value="Página de empleo">Página de empleo</option>
-  <option value="Amigo o conocido">Amigo o conocido</option>
-  <option value="Otra">Otra</option>
-</select>
+  <div class="form-group">
+    <input type="tel" id="telefono" placeholder="Numero de telefono" required>
+  </div>
 
-<input type="text" id="otra_fuente" placeholder="Si seleccionaste otra, ¿cuál?" style="display:none;">
-      <button type="submit">Registrarme</button>
+  <div class="form-group">
+    <input type="text" id="ciudad" placeholder="Ciudad" required>
+  </div>
 
-    </form>
+  <div class="form-group">
+    <input type="text" id="direccion" placeholder="Direccion" required>
+  </div>
+
+  <div class="form-group">
+    <input type="number" id="edad" placeholder="Edad" required>
+  </div>
+
+  <div class="form-group">
+    <label for="genero">Seleccione su género</label>
+    <select id="genero" required>
+      <option value="">Seleccione una opción</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="email" id="correo" placeholder="Correo electronico" required>
+  </div>
+
+  <div class="form-group">
+    <label for="talla">Seleccione su talla</label>
+    <select id="talla" required>
+      <option value="">Seleccione una opción</option>
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="fuente">¿Dónde encontraste la oferta?</label>
+    <select id="fuente" required>
+      <option value="">Seleccione una opción</option>
+      <option value="Redes sociales">Redes sociales</option>
+      <option value="Periódico">Periódico</option>
+      <option value="Página de empleo">Página de empleo</option>
+      <option value="Amigo o conocido">Amigo o conocido</option>
+      <option value="Otra">Otra</option>
+    </select>
+  </div>
+
+  <div class="form-group" id="otraFuenteGroup" style="display:none;">
+    <input type="text" id="otra_fuente" placeholder="Si seleccionaste otra, ¿cuál?">
+  </div>
+
+  <input type="hidden" id="codigo_unico">
+
+  <button type="submit">Registrarme</button>
+
+</form>
   </div>
 <script>
 document.getElementById("fuente").addEventListener("change", function() {
+  const otraGroup = document.getElementById("otraFuenteGroup");
   const otraInput = document.getElementById("otra_fuente");
-  
+
   if (this.value === "Otra") {
-    otraInput.style.display = "block";
+    otraGroup.style.display = "block";
     otraInput.required = true;
   } else {
-    otraInput.style.display = "none";
+    otraGroup.style.display = "none";
     otraInput.required = false;
     otraInput.value = "";
   }
