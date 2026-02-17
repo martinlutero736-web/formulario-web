@@ -58,23 +58,29 @@ p {
 
 /* Icon inputs */
 .icon-input {
-  position: relative;
-  margin-bottom: 18px;
   display: flex;
-  align-items: center; /* 👈 centra vertical real */
+  align-items: center;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0 12px;
+  margin-bottom: 18px;
+  transition: 0.3s;
 }
 
 .icon-input i {
-  position: absolute;
-  left: 15px;
-  font-size: 14px;
   color: #2c5364;
-  pointer-events: none;
+  font-size: 14px;
+  margin-right: 10px;
 }
 
 .icon-input input {
-  padding: 14px 14px 14px 42px; /* 👈 espacio fijo para icono */
+  border: none;
+  background: transparent;
+  padding: 14px 0;
   width: 100%;
+  font-size: 15px;
+  outline: none;
 }
 
 /* Inputs y selects */
